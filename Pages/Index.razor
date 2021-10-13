@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@inject IStringLocalizer<Resource> R
+@inject Data.Number numberService
+
+<h1>@R["Greeting"], @R["Scope"]!</h1>
+
+Welcome to your new app.
+
+<button @onclick="StartStream">Start Stream</button>
+<button @onclick="StopStream">Stop Stream</button>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    private void StartStream()
+    {
+        numberService.StartStream();
+    }
+
+
+    private void StopStream()
+    {
+        numberService.StopStream();
+    }
+
+}

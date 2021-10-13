@@ -1,0 +1,38 @@
+﻿@typeparam T
+<p>
+    Numbers:
+    <table>
+        <tr>
+            @foreach (var item in MyList)
+            {
+                var i = 0;
+                @if (item is double itemd)
+                {
+                    <td>@itemd.ToString("F3")</td>
+                }
+                else
+                {
+                    <td>@item</td>
+                }
+
+                @if (i++ % 10 == 0)
+                {
+                    @:</tr><tr>
+                }
+            }
+        </tr>
+    </table>
+</p>
+
+
+
+@code {
+
+
+
+    [Parameter]
+    public List<T> MyList { get; set; }
+
+
+
+}

@@ -1,0 +1,49 @@
+﻿@page "/setlanguage"
+@inject NavigationManager NavigationManager
+
+@inject IStringLocalizer<Resource> R
+@using Microsoft.Extensions.Localization
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+
+<h4 class="text-uppercase">@R["title"]</h4>
+<div class="text-center h-100 w-100 display-grid grid-align-center">
+    <select class="btn btn-primary" @onchange="OnSelected">
+        @foreach (var cult in cultureInfos)
+        {
+            <option value=@cult.Name selected="@(cult.Name == LocOptions.Value.DefaultRequestCulture.Culture.Name)">@cult.NativeName</option>
+        }
+    </select>
+</div>
+@code {
+
+
+    private void OnSelected(ChangeEventArgs e)
+    {
+        var languageCode = (string)e.Value;
+
+        // set the new choice as default (to show right selected in above list)
+        LocOptions.Value.SetDefaultCulture(languageCode);
+
+        var uri = new Uri(NavigationManager.Uri)
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(languageCode)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+
+    System.Globalization.CultureInfo[] cultureInfos;
+
+    // On init: get list with supported cultures
+    protected override void OnInitialized()
+    {
+        cultureInfos = LocOptions.Value.SupportedUICultures.ToArray();
+        base.OnInitialized();
+    }
+
+}
+

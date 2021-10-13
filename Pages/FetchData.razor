@@ -1,0 +1,56 @@
+﻿@page "/fetchdata"
+
+@using Blazor.I18N.Bug.Data
+@using System.Globalization
+@using System.Threading
+
+@inject IStringLocalizer<Resource> R
+@inject Data.Number numberService
+
+
+
+<h1>@R["Greeting"], @R["Scope"]!</h1>
+<p>Language: @CultureInfo.CurrentCulture.NativeName </p>
+
+Last number: @number
+
+<ListDisplay MyList="numbers"></ListDisplay>
+
+@code {
+
+    double number;
+
+    List<double> numbers = new List<double>();
+
+    IDisposable disposableSubscription;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            SubscribeData();
+        }
+
+    }
+
+
+    private void SubscribeData()
+    {
+        disposableSubscription = numberService.Subscribe(Number_OnNext);
+    }
+
+    private void Number_OnNext(double numberFromService)
+    {
+        number = numberFromService;
+        numbers.Add(number);
+        InvokeAsync(() => StateHasChanged());
+    }
+
+    public void Dispose()
+    {
+        disposableSubscription.Dispose();
+
+    }
+
+}
