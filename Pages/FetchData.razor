@@ -5,7 +5,7 @@
 @using System.Threading
 
 @inject IStringLocalizer<Resource> R
-@inject Data.Number numberService
+@inject Data.NumberService numberService
 
 
 
@@ -37,7 +37,7 @@ Last number: @number
 
     private void SubscribeData()
     {
-        disposableSubscription = numberService.Subscribe(Number_OnNext);
+        disposableSubscription = numberService.RandomNumbers(1200).Subscribe(Number_OnNext);
     }
 
     private void Number_OnNext(double numberFromService)

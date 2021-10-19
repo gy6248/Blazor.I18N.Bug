@@ -30,7 +30,7 @@ namespace Blazor.I18N.Bug
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<Number>();
+            services.AddSingleton<NumberService>();
 
             // localization 
             services.AddLocalization(options => options.ResourcesPath = "Resources");

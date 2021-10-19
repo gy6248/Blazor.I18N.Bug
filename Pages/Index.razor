@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 @inject IStringLocalizer<Resource> R
-@inject Data.Number numberService
+@inject Data.NumberService numberService
 
 <h1>@R["Greeting"], @R["Scope"]!</h1>
 
@@ -15,13 +15,13 @@ Welcome to your new app.
 @code{
     private void StartStream()
     {
-        numberService.StartStream();
+        //numberService.StartStream();
     }
 
 
     private void StopStream()
     {
-        numberService.StopStream();
+        //numberService.StopStream();
     }
 
 }
