@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/watcher"
 @implements IDisposable
 
 @inject IStringLocalizer<Resource> R
@@ -7,9 +7,10 @@
 @using System.Globalization
 @using System.IO
 
+
 <h1>@R["Greeting"]</h1>
 <p>Current UI Culture: @CultureInfo.CurrentUICulture.NativeName </p>
-<p>Please start by changing the language</p>
+
 
 @if (string.IsNullOrEmpty(FileName))
 {
@@ -23,21 +24,26 @@ else
 <br />
 <br />
 
-<p>The language on this page will change back to the language that was valid when the file watcher was instantiated on startup.</p>
+
+<p>The language on this page will NOT change because the file watcher was instantiated from this page.</p>
 
 
 
 @code{
 
+
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            fileWatcherService.FileWatcher.EnableRaisingEvents = true;
-            fileWatcherService.FileWatcher.Created += OnCreated;
-            fileWatcherService.FileWatcher.Deleted += OnDeleted;
-
+            fileWatcherService.SecondWatcher = new FileSystemWatcher(Data.FileWatcherService.WATCHED_PATH); // Wathcher instantiated on page
+            fileWatcherService.SecondWatcher.EnableRaisingEvents = true;
+            fileWatcherService.SecondWatcher.Created += OnCreated;
+            fileWatcherService.SecondWatcher.Deleted += OnDeleted;
         }
+
+
         base.OnAfterRender(firstRender);
     }
 
@@ -62,8 +68,8 @@ else
 
     public void Dispose()
     {
-        fileWatcherService.FileWatcher.Created -= OnCreated;
-        fileWatcherService.FileWatcher.Deleted -= OnDeleted;
+        fileWatcherService.SecondWatcher.Created -= OnCreated;
+        fileWatcherService.SecondWatcher.Deleted -= OnDeleted;
     }
 
 

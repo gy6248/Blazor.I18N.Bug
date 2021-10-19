@@ -118,18 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Greeting" xml:space="preserve">
-    <value>servus</value>
-  </data>
-  <data name="only_english" xml:space="preserve">
-    <value>Hier ist Text aus der Deutsche Datei</value>
-  </data>
-  <data name="Scope" xml:space="preserve">
-    <value>Welt</value>
+    <value>servus, Welt!</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Deutsche Überschrift</value>
-  </data>
-  <data name="weather_forecast" xml:space="preserve">
-    <value>Wetterbericht</value>
   </data>
 </root>

@@ -118,18 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Greeting" xml:space="preserve">
-    <value>hello</value>
-  </data>
-  <data name="only_english" xml:space="preserve">
-    <value>This text is in the English resource</value>
-  </data>
-  <data name="Scope" xml:space="preserve">
-    <value>world</value>
+    <value>hello, world!</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>English title</value>
-  </data>
-  <data name="weather_forecast" xml:space="preserve">
-    <value>Weather forecast</value>
   </data>
 </root>

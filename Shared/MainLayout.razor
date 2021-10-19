@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject IStringLocalizer<Resource> R
+@using System.Globalization
 
 <div class="page">
     <div class="sidebar">
@@ -8,8 +9,8 @@
 
     <div class="main">
         <div class="top-row px-4">
-            <p class="float-left">@R["title"]</p>
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <div>@R["title"]</div>
+            <div>Language: @CultureInfo.CurrentCulture.NativeName </div>
         </div>
 
         <div class="content px-4">
