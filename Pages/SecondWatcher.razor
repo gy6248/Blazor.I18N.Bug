@@ -9,13 +9,12 @@
 
 
 <h1>@R["Greeting"]</h1>
-<p>Language: @CultureInfo.CurrentUICulture.NativeName </p>
-<p>Thread: @Environment.CurrentManagedThreadId</p>
+<p>Current UI Culture: @CultureInfo.CurrentUICulture.NativeName </p>
 
 
 @if (string.IsNullOrEmpty(FileName))
 {
-    <p>Create or delete files on: <code>@Data.FileWatcherService.WATCHED_PATH </code> to see updates here.</p>
+    <p>Create or delete files on: <code>@Data.FileWatcherService.WATCHED_PATH </code> to see the page update.</p>
 }
 else
 {
@@ -26,7 +25,7 @@ else
 <br />
 
 
-<p>The language on this page will NOT change as the file watcher was instantiated from this page.</p>
+<p>The language on this page will NOT change because the file watcher was instantiated from this page.</p>
 
 
 
