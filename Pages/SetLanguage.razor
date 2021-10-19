@@ -1,5 +1,5 @@
 ﻿@page "/setlanguage"
-@inject NavigationManager NavigationManager
+@inject NavigationManager navigationManager
 
 @inject IStringLocalizer<Resource> R
 @using Microsoft.Extensions.Localization
@@ -28,12 +28,12 @@
         // set the new choice as default (to show right selected in above list)
         LocOptions.Value.SetDefaultCulture(languageCode);
 
-        var uri = new Uri(NavigationManager.Uri)
+        var uri = new Uri(navigationManager.Uri)
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(languageCode)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";
 
-        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+        navigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
     }
 
     System.Globalization.CultureInfo[] cultureInfos;

@@ -8,17 +8,18 @@
 @using System.IO
 
 
-<h1>@R["Greeting"], @R["Scope"]!</h1>
-<p>Language: @CultureInfo.CurrentCulture.NativeName </p>
+<h1>@R["Greeting"]</h1>
+<p>Language: @CultureInfo.CurrentUICulture.NativeName </p>
+<p>Thread: @Environment.CurrentManagedThreadId</p>
 
 
 @if (string.IsNullOrEmpty(FileName))
 {
-    @: Create or delete files on: @Data.FileWatcherService.WATCHED_PATH to see updates here.
+    <p>Create or delete files on: <code>@Data.FileWatcherService.WATCHED_PATH </code> to see updates here.</p>
 }
 else
 {
-    @: @FileName was @FileAction
+    <p>@FileName was @FileAction</p>
 }
 
 <br />
@@ -37,7 +38,7 @@ else
     {
         if (firstRender)
         {
-            fileWatcherService.SecondWatcher = new FileSystemWatcher(Data.FileWatcherService.WATCHED_PATH);
+            fileWatcherService.SecondWatcher = new FileSystemWatcher(Data.FileWatcherService.WATCHED_PATH); // Wathcher instantiated on page
             fileWatcherService.SecondWatcher.EnableRaisingEvents = true;
             fileWatcherService.SecondWatcher.Created += OnCreated;
             fileWatcherService.SecondWatcher.Deleted += OnDeleted;
