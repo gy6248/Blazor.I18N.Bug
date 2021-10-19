@@ -126,7 +126,4 @@
   <data name="title" xml:space="preserve">
     <value>Bóveda Español</value>
   </data>
-  <data name="weather_forecast" xml:space="preserve">
-    <value>pronóstico meteorológico</value>
-  </data>
 </root>
