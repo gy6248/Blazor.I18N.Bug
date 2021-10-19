@@ -18,4 +18,3 @@ If the file watcher is instantiated in the constructor of my singleton FileWatch
 Changing the language in the app will work as expected, until an event triggers a page update.  If the event used to trigger ```InvokeAsync(StateHasChanged)``` subscribes to ```FileWatcher```'s events, the razor component will render again with the old UICulture.
 
 A second file watcher that is instantiated in the razor component is also demonstrated.  Here everything works as expected.
-
